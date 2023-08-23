@@ -1,0 +1,203 @@
+<template>
+    <lightning-card>
+        <div class="header">
+            <div>
+
+                <span><lightning-icon icon-name="utility:back" class="slds-m-left_medium" size="small"></lightning-icon></span>
+                <span class="verticalLine slds-m-left_medium slds-m-vertical_medium" style="border-right: 2px solid gray;"></span>
+
+                <span><img class="logo slds-m-vertical_medium slds-m-left_medium" src={ExpediteCommerceLogo}></span>
+            
+                <span class="slds-m-left_medium smallFont">Forcasting :</span>
+                <span class="slds-m-left_small bigFont" style="color: #ffffff;">Opportunity Name</span>
+
+            </div>
+            
+        </div>
+
+        
+        <div class="slds-m-vertical_x-large">
+            <span class="slds-m-left_large bodyHeaderFont" style="color: #000000;">Forecast Name</span>
+        </div>
+
+        <div style="background-color: #ededed; height: 4rem">
+
+            <lightning-layout multiple-rows>
+
+                <lightning-layout-item size="12" small-device-size="10" medium-device-size="10" large-device-size="10" padding="around-small">
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" small-device-size="2" medium-device-size="2" large-device-size="2" padding="around-small">
+                    
+                    <lightning-combobox
+                        name="ForcastOption"
+                        variant="label-hidden"
+                        placeholder="View"
+                        value={selectedView}
+                        options={ForcastOptions}
+                        onchange={handleViewChange}>
+                    </lightning-combobox>
+
+                </lightning-layout-item>
+
+            </lightning-layout>    
+        </div>
+
+        <div class="slds-m-vertical_x-large slds-scrollable_x">
+
+            <lightning-layout multiple-rows>
+
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12" padding="around-small">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered zui-table">
+                        <thead>
+                            <tr class="">
+                                <template for:each={tableData} for:item="objTable">
+                                    <th key={objTable} class="slds-size_3-of-10" scope="col">
+                                        <div class="slds-truncate" title={objTable}>{objTable}</div>
+                                    </th>
+                                </template>
+
+                                <template if:true={isYearSummary}>
+                                    <template for:each={productData.summaryYearData} for:item="yearsData" for:index="indexYear">
+                                        <th key={yearsData.year} class="slds-size_3-of-10" data-label="Prospecting">
+                                            {yearsData.year}
+                                        </th>
+                                    </template>
+                                </template>
+
+
+                                <template if:true={isMonthSummary}>
+                                    <template for:each={productData.summaryMonthData} for:item="itm" for:index="m">
+                                        <th key={itm.month} class="slds-size_3-of-10" data-label="Prospecting">
+                                            {itm.month}
+                                        </th>
+                                    </template>
+                                </template>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        <template for:each={productData.lineItemData} for:item="item" for:index="indexVar">
+                            <tr key={item.productItemId} class="slds-hint-parent" ondblclick={onDoubleClickEdit}>
+                                
+                                <td class="slds-size_3-of-10 productItemName" data-label="Prospecting">
+                                    {item.productItemName}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.optionItemName}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.attributes}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.revenueType}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.qty}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.unitPrice}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.startMonth}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.months}
+                                </td>
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.revenueRecognitionName}
+                                </td>
+                                
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    {item.committed}
+                                </td>
+
+                                <template if:true={isYearSummary}>
+                                    <template for:each={item.yearsData} for:item="yearsData" for:index="indexYear">
+                                        <td key={yearsData.year} class="slds-size_3-of-10" data-label="Prospecting">
+                                            {yearsData.amount}
+                                        </td>
+                                    </template>
+                                </template>
+
+                                <template if:true={isMonthSummary}>
+                                    <template for:each={item.monthsData} for:item="lineData" for:index="indexYear">
+                                        <td key={lineData.month} class="slds-size_3-of-10" data-label="Prospecting">
+                                            {lineData.amount}
+                                        </td>
+                                    </template>
+                                </template>
+                            </tr>
+                        </template>
+
+
+                        <!-- <template for:each={lineItemData} for:item="item" for:index="indexVar"> -->
+                            <tr style="background-color: #ededed; height: 3rem">
+                                
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+
+                                <th>
+                                </th>
+                                
+                                <th>
+                                </th>
+
+                                <template if:true={isYearSummary}>
+                                    <template for:each={productData.summaryYearData} for:item="yearsData" for:index="indexYear">
+                                        <th key={yearsData.year} class="slds-size_3-of-10" data-label="Prospecting">
+                                            <b>{yearsData.summaryAmount}</b>
+                                        </th>
+                                    </template>
+                                </template>
+
+                                <template if:true={isMonthSummary}>
+                                    <template for:each={productData.summaryMonthData} for:item="itm" for:index="m">
+                                        <th key={itm.month} class="slds-size_3-of-10" data-label="Prospecting">
+                                            <b>{itm.summaryAmount}</b>
+                                        </th>
+                                    </template>
+                                </template>
+                                
+                               
+                            </tr>
+                        
+                    </tbody>
+                </table>
+                </lightning-layout-item>
+            
+            </lightning-layout>
+        </div>
+
+        
+    </lightning-card>
+
+</template>

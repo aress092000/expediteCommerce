@@ -1,0 +1,71 @@
+.header{
+    background-color: #0a0a0a;
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.03);
+}
+.logo{
+    width: 40px;
+    height: 20px;
+}
+.verticalLine{
+    width: 60px;
+    height: 11px;
+    fill: #414141;
+}
+.bigFont{
+    width: 287px;
+    height: 19px;
+    font-size: 16px;
+    text-decoration: none solid rgb(255, 255, 255);
+}
+.smallFont{
+    width: 91px;
+    height: 16px;
+    font-size: 13px;
+    color: #acacac;
+    text-decoration: none solid rgb(172, 172, 172);
+}
+.bodyHeaderFont{
+    width: 300px;
+    height: 23px;
+    font-size: 19px;
+    color: #0a0a0a;
+    text-decoration: none solid rgb(10, 10, 10);
+}
+
+  table {
+    position: relative;
+    border-collapse: collapse;
+  }
+  
+  td, th {
+    padding: 0.25em;
+  }
+  
+  thead th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 0;
+  }
+  
+  thead th:first-child {
+    left: 0;
+    z-index: 1;
+  }
+  
+  tbody th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    left: 0;
+    background: #FFF;
+  }
+
+  .stickyClass {
+
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    left: 0;
+    background: white;
+    overflow: hidden;
+    z-index: 1;
+    
+  }
